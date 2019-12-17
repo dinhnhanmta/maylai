@@ -1,6 +1,6 @@
 #include "def_io.h"
 int angle_pre=0;                       //  GOC THUC TE TREN MAN HINH
-int period=50;
+int period=50;                         // CHU KY DICH CHUYEN CUA KIM
 void setup() {
   // put your setup code here, to run once:
   //khai bao chan vao ra
@@ -30,7 +30,8 @@ void setup() {
 }
 
 void loop() {
-  
+  updateStateMachine();
+  updateLed();
   
 }
 
@@ -121,18 +122,18 @@ void sendAngle(int angle)
 }
 void updateADC(int control)
 {
-  int adc_value,angle,angle_temp,i;
+  int adc_value,angle,angle_err,i;
   long time_now;
 if (control==1)
 { 
   adc_value=analogRead(adc_steering_1);
   angle=map(adc_value,0,1023,0,220);        //DONG HO QUAY VOI GOC 240 DO tu 340 den 200 do 
-  angle_temp=abs(angle-angle_pre);
+  angle_err=abs(angle-angle_pre);
   while (angle_pre!=angle)
   {
   if (angle_pre<angle)
   {
-      for(i=1;i<=angle_temp;i++)
+      for(i=1;i<=angle_err;i++)
       {
         angle_pre+=1;  
         sendAngle(angle_pre);
@@ -143,10 +144,12 @@ if (control==1)
   }
   else 
   {
-    for(i=1;i<=angle_temp;i++)
+    for(i=1;i<=angle_err;i++)
       {  
         angle_pre-=1; 
         sendAngle(angle_pre);
+        time_now=millis();
+        while (millis()<time_now + period);
       }
   }
   
@@ -154,14 +157,14 @@ if (control==1)
 }
 if (control==2)
 {
-  adc_value=analogRead(adc_steering_1);
+  adc_value=analogRead(adc_steering_2);
   angle=map(adc_value,0,1023,0,220);        //DONG HO QUAY VOI GOC 240 DO tu 340 den 200 do 
-  angle_temp=abs(angle-angle_pre);
+  angle_err=abs(angle-angle_pre);
   while (angle_pre!=angle)
   {
   if (angle_pre<angle)
   {
-      for(i=1;i<=angle_temp;i++)
+      for(i=1;i<=angle_err;i++)
       {
         angle_pre+=1;  
         sendAngle(angle_pre);
@@ -172,10 +175,12 @@ if (control==2)
   }
   else 
   {
-    for(i=1;i<=angle_temp;i++)
+    for(i=1;i<=angle_err;i++)
       {  
         angle_pre-=1; 
         sendAngle(angle_pre);
+        time_now=millis();
+        while (millis()<time_now + period);
       }
   }
   

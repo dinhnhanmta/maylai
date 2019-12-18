@@ -8,17 +8,17 @@
 #define UNSELECT       HIGH
 #define ON            HIGH
 #define OFF           LOW
-#define sw_source_1   22            //CONG TAC CHON NGUON 1
-#define sw_source_2   23            //CONG TAC CHON NGUON 2
-#define sw_pump_1     24            //CONG TAC CHON BOM 1
-#define sw_pump_2     25            //CONG TAC CHON BOM 2
-#define sw_steering_1 26            //CONG TAC CHON LAI 1
-#define sw_steering_2 27            //CONG TAC CHON LAI 2
+#define sw_source_1   8            //CONG TAC CHON NGUON 1
+#define sw_source_2   9            //CONG TAC CHON NGUON 2
+#define sw_pump_1     10            //CONG TAC CHON BOM 1
+#define sw_pump_2     11            //CONG TAC CHON BOM 2
+#define sw_steering_1 12           //CONG TAC CHON LAI 1
+#define sw_steering_2 13            //CONG TAC CHON LAI 2
 
-#define bt_start_1   28            //NUT KHOI DONG M1
-#define bt_start_2   29            //NUT KHOI DONG M2
-#define bt_stop_1    30            //NUT DUNG M1
-#define bt_stop_2    31            //NUT DUNG M2
+#define bt_start_1   2            //NUT KHOI DONG M1
+#define bt_start_2   5            //NUT KHOI DONG M2
+#define bt_stop_1    3           //NUT DUNG M1
+#define bt_stop_2    4            //NUT DUNG M2
 
 #define led_source_1  32            //LED SANG KHI CHON NGUON 1
 #define led_source_2  33            //LED SANG KHI CHON NGUON 2
@@ -27,9 +27,28 @@
 #define led_start_1   36            //LED SANG KHI BAM NUT KHOI DONG 1
 #define led_start_2   37            //LED SANG KHI BAM NUT KHOI DONG 2  
  
-#define adc_steering_1    A0            //LAI M1
-#define adc_steering_2    A1            //LAI M2
+#define adc_steering_1    A1            //LAI M1
+#define adc_steering_2    A2            //LAI M2
+/*------------ chan vao ra bao su co ---------*/
+#define bt_source_err 38
+#define bt_phase_err_1 39
+#define bt_phase_err_2 40
+#define bt_oil_err_1   41
+#define bt_oil_err_2   42
+#define bt_overload_1  43
+#define bt_overload_2  44
 
+#define led_source_err 45
+#define led_phase_err_1 46
+#define led_phase_err_2 47
+#define led_oil_err_1   48
+#define led_oil_err_2   49
+#define led_overload_1  50
+#define led_overload_2  51
+#define led_alert       52
+#define led_backup      53
+
+#define sw_source_backup 54
 enum stateMayLai {
 BEGIN,                       // TRANG THAI BAN DAU
 SW_SOURCE1_SELECTED,         // DA CHON NGUON 1
@@ -42,12 +61,23 @@ SW_STEERING1_SELECTED,       // DA CHON LAI 1
 SW_STEERING2_SELECTED,       // DA CHON LAI 2 
 ADC_CONTROL1,                // DANH LAI M1
 ADC_CONTROL2                 // DANH LAI M2
-};
 
+};
+enum stateError{
+NORMAL,                      // BINH THUONG
+ERROR_SOURCE,                // SU CO NGUON
+ERROR_PHASE1,                // SU CO PHA 1
+ERROR_PHASE2,                // SU CO PHA 2
+ERROR_OIL1,                  // SU CO DAU 1
+ERROR_OIL2,                  // SU CO DAU 2
+ERROR_OVERLOAD1,             // SU CO QUA TAI 1
+ERROR_OVERLOAD2              // SU CO QUA TAI 2 
+};
 void updateStateMachine(void);    // CAP NHAT TRANG THAI MAY  
 void updateLed(void);             // CAP NHAT TRANG THAI LED
 void updateADC(int control);      // CAP NHAT ADC
 void sendAngle(int angle);         // GUI GOC LAI
+void updateError(void);           /// CAP NHAT SU CO
 enum stateMayLai state=BEGIN;
-
+enum stateError  state_err=NORMAL;
 #endif

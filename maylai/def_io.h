@@ -20,35 +20,35 @@
 #define bt_stop_1    3           //NUT DUNG M1
 #define bt_stop_2    4            //NUT DUNG M2
 
-#define led_source_1  32            //LED SANG KHI CHON NGUON 1
-#define led_source_2  33            //LED SANG KHI CHON NGUON 2
-#define led_pump_1    34            //LED SANG KHI CHON BOM 1
-#define led_pump_2    35            //LED SANG KHI CHON BOM 2
-#define led_start_1   36            //LED SANG KHI BAM NUT KHOI DONG 1
-#define led_start_2   37            //LED SANG KHI BAM NUT KHOI DONG 2  
+#define led_source_1  30            //LED SANG KHI CHON NGUON 1
+#define led_source_2  31            //LED SANG KHI CHON NGUON 2
+#define led_pump_1    32            //LED SANG KHI CHON BOM 1
+#define led_pump_2    33            //LED SANG KHI CHON BOM 2
+#define led_start_1   47            //LED SANG KHI BAM NUT KHOI DONG 1
+#define led_start_2   52            //LED SANG KHI BAM NUT KHOI DONG 2  
  
 #define adc_steering_1    A1            //LAI M1
 #define adc_steering_2    A2            //LAI M2
 /*------------ chan vao ra bao su co ---------*/
-#define bt_source_err 38
-#define bt_phase_err_1 39
-#define bt_phase_err_2 40
-#define bt_oil_err_1   41
-#define bt_oil_err_2   42
-#define bt_overload_1  43
-#define bt_overload_2  44
+#define bt_source_err 26
+#define bt_phase_err_1 27
+#define bt_phase_err_2 28
+#define bt_oil_err_1   24
+#define bt_oil_err_2   25
+#define bt_overload_1  22
+#define bt_overload_2  23
 
-#define led_source_err 45
-#define led_phase_err_1 46
-#define led_phase_err_2 47
-#define led_oil_err_1   48
-#define led_oil_err_2   49
-#define led_overload_1  50
-#define led_overload_2  51
-#define led_alert       52
-#define led_backup      53
+#define led_source_err 39
+#define led_phase_err_1 40
+#define led_phase_err_2 41
+#define led_oil_err_1   43
+#define led_oil_err_2   46
+#define led_overload_1  44
+#define led_overload_2  45
+#define led_alert       49
+#define led_backup      48
 
-#define sw_source_backup 54
+#define sw_source_backup 29
 enum stateMayLai {
 BEGIN,                       // TRANG THAI BAN DAU
 SW_SOURCE1_SELECTED,         // DA CHON NGUON 1
